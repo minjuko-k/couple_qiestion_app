@@ -146,16 +146,27 @@
       background: #14181c;
     }
 
+    .item-left {
+      flex: 1;
+      min-width: 0;
+    }
+
     .item-text {
       font-size: 14px;
-      line-height: 1.5;
-      flex: 1;
+      line-height: 1.6;
       white-space: pre-wrap;
       word-break: keep-all;
       color: #e9edf1;
     }
 
-    .delete-btn {
+    .item-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .action-btn {
       background: #262c33;
       color: #d7dde4;
       padding: 8px 10px;
@@ -163,6 +174,44 @@
       font-size: 13px;
       font-weight: 700;
       min-width: 56px;
+      border: 1px solid #3a424c;
+    }
+
+    .edit-box {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .edit-box.active {
+      display: block;
+    }
+
+    .edit-textarea {
+      min-height: 84px;
+      margin-bottom: 8px;
+    }
+
+    .edit-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .save-btn {
+      background: #f3f4f6;
+      color: #111315;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cancel-btn {
+      background: #262c33;
+      color: #d7dde4;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
       border: 1px solid #3a424c;
     }
 
@@ -224,6 +273,7 @@
       collection,
       addDoc,
       deleteDoc,
+      updateDoc,
       doc,
       onSnapshot,
       query,
@@ -352,19 +402,112 @@
         const row = document.createElement("div");
         row.className = "item";
 
+        const left = document.createElement("div");
+        left.className = "item-left";
+
         const text = document.createElement("div");
         text.className = "item-text";
         text.innerHTML = escapeHtml(item.text);
 
-        const del = document.createElement("button");
-        del.className = "delete-btn";
-        del.textContent = "삭제";
-        del.onclick = () => deleteQuestion(item.id);
+        const editBox = document.createElement("div");
+        editBox.className = "edit-box";
+        editBox.id = `edit-box-${item.id}`;
 
-        row.appendChild(text);
-        row.appendChild(del);
+        const editTextarea = document.createElement("textarea");
+        editTextarea.className = "edit-textarea";
+        editTextarea.id = `edit-textarea-${item.id}`;
+        editTextarea.value = item.text;
+
+        const editActions = document.createElement("div");
+        editActions.className = "edit-actions";
+
+        const saveBtn = document.createElement("button");
+        saveBtn.className = "save-btn";
+        saveBtn.textContent = "저장";
+        saveBtn.onclick = () => saveEdit(item.id);
+
+        const cancelBtn = document.createElement("button");
+        cancelBtn.className = "cancel-btn";
+        cancelBtn.textContent = "취소";
+        cancelBtn.onclick = () => cancelEdit(item.id);
+
+        editActions.appendChild(saveBtn);
+        editActions.appendChild(cancelBtn);
+
+        editBox.appendChild(editTextarea);
+        editBox.appendChild(editActions);
+
+        left.appendChild(text);
+        left.appendChild(editBox);
+
+        const actions = document.createElement("div");
+        actions.className = "item-actions";
+
+        const editBtn = document.createElement("button");
+        editBtn.className = "action-btn";
+        editBtn.textContent = "수정";
+        editBtn.onclick = () => openEdit(item.id);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "action-btn";
+        delBtn.textContent = "삭제";
+        delBtn.onclick = () => deleteQuestion(item.id);
+
+        actions.appendChild(editBtn);
+        actions.appendChild(delBtn);
+
+        row.appendChild(left);
+        row.appendChild(actions);
         listEl.appendChild(row);
       });
+    };
+
+    window.openEdit = function(id) {
+      const box = document.getElementById(`edit-box-${id}`);
+      if (!box) return;
+      box.classList.add("active");
+    };
+
+    window.cancelEdit = function(id) {
+      const box = document.getElementById(`edit-box-${id}`);
+      const textarea = document.getElementById(`edit-textarea-${id}`);
+      const original = allQuestions.find(q => q.id === id);
+
+      if (textarea && original) {
+        textarea.value = original.text;
+      }
+
+      if (box) {
+        box.classList.remove("active");
+      }
+    };
+
+    window.saveEdit = async function(id) {
+      const textarea = document.getElementById(`edit-textarea-${id}`);
+      if (!textarea) return;
+
+      const newText = textarea.value.trim();
+
+      if (!newText) {
+        alert("질문 내용을 입력해줘!");
+        return;
+      }
+
+      try {
+        await updateDoc(doc(db, "questions", id), {
+          text: newText
+        });
+
+        const box = document.getElementById(`edit-box-${id}`);
+        if (box) {
+          box.classList.remove("active");
+        }
+
+        alert("질문이 수정됐어 🖤");
+      } catch (error) {
+        console.error(error);
+        alert("수정 중 오류가 났어.");
+      }
     };
 
     async function deleteQuestion(id) {
