@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리 질문 뽑기</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fffafc;
+      color: #222;
+    }
+
+    .wrap {
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    p.sub {
+      text-align: center;
+      color: #666;
+      margin-top: 0;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      display: grid;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      background: #ff6fae;
+      color: white;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #ffd7e8;
+      color: #b03060;
+    }
+
+    .category {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>우리 질문 뽑기</h1>
+    <p class="sub">오늘 뭐 얘기할지 모르겠을 때 꺼내보기</p>
+
+    <div class="category" id="category">카테고리: 전체</div>
+    <div class="card" id="questionBox">버튼을 눌러 질문을 뽑아봐 💗</div>
+
+    <div class="buttons">
+      <button onclick="drawQuestion('all')">전체 질문 뽑기</button>
+      <button class="secondary" onclick="drawQuestion('love')">연애 질문</button>
+      <button class="secondary" onclick="drawQuestion('balance')">밸런스 게임</button>
+      <button class="secondary" onclick="drawQuestion('fun')">장난 질문</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = {
+      love: [
+        "내가 했을 때 제일 좋았던 말이나 행동은?",
+        "처음보다 더 좋아진 점 하나 말해보기",
+        "요즘 나한테 바라는 점 하나는?",
+        "같이 있어서 가장 편한 순간은 언제야?",
+        "내가 귀엽다고 느껴졌던 순간은?"
+      ],
+      balance: [
+        "집데이트 vs 밖데이트",
+        "바다 여행 vs 산 여행",
+        "하루 종일 붙어있기 vs 자주 짧게 보기",
+        "전화 오래 하기 vs 카톡 자주 하기",
+        "야식 먹기 vs 디저트 먹기"
+      ],
+      fun: [
+        "내 별명 하나 새로 지어준다면?",
+        "나를 동물에 비유하면 뭐야?",
+        "우리 커플 테마곡 정하면 뭐가 어울릴까?",
+        "같이 먹고 싶은 야식 하나만 고르면?",
+        "내가 제일 자주 할 것 같은 말은?"
+      ]
+    };
+
+    function drawQuestion(type) {
+      let list = [];
+      let label = "전체";
+
+      if (type === "love") {
+        list = questions.love;
+        label = "연애 질문";
+      } else if (type === "balance") {
+        list = questions.balance;
+        label = "밸런스 게임";
+      } else if (type === "fun") {
+        list = questions.fun;
+        label = "장난 질문";
+      } else {
+        list = [...questions.love, ...questions.balance, ...questions.fun];
+      }
+
+      const randomIndex = Math.floor(Math.random() * list.length);
+      document.getElementById("questionBox").textContent = list[randomIndex];
+      document.getElementById("category").textContent = `카테고리: ${label}`;
+    }
+  </script>
+</body>
+</html>
