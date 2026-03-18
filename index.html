@@ -255,8 +255,7 @@
       <div class="list" id="questionList"></div>
 
       <div class="notice">
-        지금은 Firestore 테스트 모드 기준으로 쓰는 버전이야.  
-        나중에는 보안 규칙을 따로 손보는 게 좋아.
+        지금은 Firestore 테스트 모드 기준으로 쓰는 버전이야.
       </div>
     </div>
 
@@ -290,11 +289,9 @@
       { category: "love", text: "내가 했을 때 제일 좋았던 말이나 행동은?" },
       { category: "love", text: "처음보다 더 좋아진 점 하나 말해보기" },
       { category: "love", text: "요즘 나한테 바라는 점 하나는?" },
-
       { category: "balance", text: "집데이트 vs 밖데이트" },
       { category: "balance", text: "바다 여행 vs 산 여행" },
       { category: "balance", text: "전화 오래 하기 vs 카톡 자주 하기" },
-
       { category: "fun", text: "내 별명 하나 새로 지어준다면?" },
       { category: "fun", text: "나를 동물에 비유하면 뭐야?" },
       { category: "fun", text: "같이 먹고 싶은 야식 하나만 고르면?" }
@@ -421,7 +418,7 @@
       listEl.innerHTML = "";
 
       if (!items.length) {
-        listEl.innerHTML = `<div class="item"><div class="item-text">아직 질문이 없어.</div></div>`;
+        listEl.innerHTML = '<div class="item"><div class="item-text">아직 질문이 없어.</div></div>';
         return;
       }
 
@@ -431,10 +428,7 @@
 
         const text = document.createElement("div");
         text.className = "item-text";
-        text.innerHTML = `
-          <strong>[${getCategoryLabel(item.category)}]</strong><br>
-          ${escapeHtml(item.text)}
-        `;
+        text.innerHTML = `<strong>[${getCategoryLabel(item.category)}]</strong><br>${escapeHtml(item.text)}`;
 
         const del = document.createElement("button");
         del.className = "delete-btn";
@@ -464,24 +458,28 @@
 
       const q = query(questionsRef, orderBy("createdAt", "desc"));
 
-      onSnapshot(q, async (snapshot) => {
-        try {
-          await addDefaultQuestionsIfEmpty(snapshot);
-        } catch (error) {
+      onSnapshot(
+        q,
+        async (snapshot) => {
+          try {
+            await addDefaultQuestionsIfEmpty(snapshot);
+          } catch (error) {
+            console.error(error);
+          }
+
+          allQuestions = snapshot.docs.map((docItem) => ({
+            id: docItem.id,
+            ...docItem.data()
+          }));
+
+          renderQuestions(currentManageFilter);
+          updateLoadingText("");
+        },
+        (error) => {
           console.error(error);
+          updateLoadingText("데이터를 불러오지 못했어. Firestore 설정을 확인해봐.");
         }
-
-        allQuestions = snapshot.docs.map((docItem) => ({
-          id: docItem.id,
-          ...docItem.data()
-        }));
-
-        renderQuestions(currentManageFilter);
-        updateLoadingText("");
-      }, (error) => {
-        console.error(error);
-        updateLoadingText("데이터를 불러오지 못했어. Firestore 설정을 확인해봐.");
-      });
+      );
     }
 
     startRealtimeListener();
