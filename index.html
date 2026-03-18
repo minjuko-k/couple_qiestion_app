@@ -5,207 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>우리 질문 뽑기</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7fbff;
-      color: #222;
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4faff;
+    color: #1f2d3d;
+  }
 
-    .wrap {
-      max-width: 430px;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 20px 16px 40px;
-      box-sizing: border-box;
-    }
+  .wrap {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+    box-sizing: border-box;
+  }
 
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      margin: 18px 0 10px;
-    }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin: 18px 0 10px;
+    color: #244a73;
+  }
 
-    .sub {
-      text-align: center;
-      color: #666;
-      font-size: 15px;
-      margin-bottom: 22px;
-      line-height: 1.5;
-    }
+  .sub {
+    text-align: center;
+    color: #5f7f9f;
+    font-size: 15px;
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
 
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 24px 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      margin-bottom: 16px;
-      min-height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 22px;
-      line-height: 1.5;
-      word-break: keep-all;
-    }
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 18px;
+    box-shadow: 0 10px 28px rgba(111, 168, 255, 0.16);
+    margin-bottom: 16px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
 
-    .category {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #888;
-    }
+  .category {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #7a98b8;
+  }
 
-    .buttons {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
+  .buttons {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
 
-    button {
-      border: none;
-      border-radius: 16px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+  button {
+    border: none;
+    border-radius: 16px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
 
-    .primary {
-      background: #6fa8ff;
-      color: white;
-    }
+  button:active {
+    transform: scale(0.98);
+  }
 
-    .secondary {
-      background: #dbe9ff;
-      color: #2f5fa8;
-    }
+  .primary {
+    background: #6fa8ff;
+    color: white;
+  }
 
-    .ghost {
-      background: #fff;
-      color: #444;
-      border: 1px solid #e5e5e5;
-    }
+  .secondary {
+    background: #dcecff;
+    color: #3467a8;
+  }
 
-    .section {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      padding: 16px;
-      margin-top: 14px;
-    }
+  .ghost {
+    background: #ffffff;
+    color: #43617f;
+    border: 1px solid #d7e7f7;
+  }
 
-    .section h2 {
-      font-size: 18px;
-      margin: 0 0 14px;
-    }
+  .section {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(111, 168, 255, 0.12);
+    padding: 16px;
+    margin-top: 14px;
+  }
 
-    label {
-      display: block;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
+  .section h2 {
+    font-size: 18px;
+    margin: 0 0 14px;
+    color: #244a73;
+  }
 
-    select, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid #ddd;
-      border-radius: 14px;
-      padding: 12px;
-      font-size: 15px;
-      margin-bottom: 12px;
-      font-family: inherit;
-      background: white;
-    }
+  label {
+    display: block;
+    font-size: 14px;
+    color: #4e6b89;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
 
-    textarea {
-      min-height: 88px;
-      resize: vertical;
-    }
+  select, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d4e4f5;
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    background: #ffffff;
+    color: #1f2d3d;
+  }
 
-    .small {
-      font-size: 13px;
-      color: #888;
-      margin-top: -4px;
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
+  textarea {
+    min-height: 88px;
+    resize: vertical;
+  }
 
-    .stats {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 8px;
-    }
+  .small {
+    font-size: 13px;
+    color: #7d96af;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
 
-    .list {
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
-    }
+  .stats {
+    font-size: 14px;
+    color: #5f7f9f;
+    margin-bottom: 8px;
+  }
 
-    .item {
-      border: 1px solid #eee;
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-      align-items: flex-start;
-      background: #fffdfd;
-    }
+  .list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+  }
 
-    .item-text {
-      font-size: 14px;
-      line-height: 1.5;
-      flex: 1;
-      white-space: pre-wrap;
-      word-break: keep-all;
-    }
+  .item {
+    border: 1px solid #e2edf8;
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #fbfdff;
+  }
 
-    .delete-btn {
-      background: #f4f4f4;
-      color: #555;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      min-width: 56px;
-    }
+  .item-text {
+    font-size: 14px;
+    line-height: 1.5;
+    flex: 1;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    color: #27415e;
+  }
 
-    .pill-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
+  .delete-btn {
+    background: #eef5ff;
+    color: #416b9a;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 56px;
+  }
 
-    .pill {
-      border: 1px solid #eee;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: #666;
-      background: #fff;
-    }
+  .pill-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
 
-    .notice {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #888;
-      line-height: 1.5;
-    }
+  .pill {
+    border: 1px solid #d8e7f7;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #557594;
+    background: #ffffff;
+  }
 
-    .loading {
-      text-align: center;
-      color: #888;
-      font-size: 14px;
-      margin-top: 8px;
-    }
-  </style>
+  .notice {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #7d96af;
+    line-height: 1.5;
+  }
+
+  .loading {
+    text-align: center;
+    color: #6c8aad;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+</style>
 </head>
 <body>
   <div class="wrap">
