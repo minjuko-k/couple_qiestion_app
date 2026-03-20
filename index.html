@@ -3,566 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>우리 질문 뽑기</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #111315;
-      color: #f3f4f6;
-    }
-
-    .wrap {
-      max-width: 430px;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 24px 16px 40px;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      margin: 18px 0 22px;
-      color: #ffffff;
-      font-weight: 800;
-    }
-
-    .card {
-      background: #1b1f24;
-      border-radius: 20px;
-      padding: 24px 18px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-      margin-bottom: 16px;
-      min-height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 22px;
-      line-height: 1.5;
-      word-break: keep-all;
-      border: 1px solid #2b3138;
-    }
-
-    .buttons {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    button {
-      border: none;
-      border-radius: 16px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .primary {
-      background: #f3f4f6;
-      color: #111315;
-    }
-
-    .ghost {
-      background: #1b1f24;
-      color: #c5ccd4;
-      border: 1px solid #343b44;
-    }
-
-    .section {
-      background: #1b1f24;
-      border-radius: 20px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-      padding: 16px;
-      margin-top: 14px;
-      border: 1px solid #2b3138;
-    }
-
-    .section h2 {
-      font-size: 18px;
-      margin: 0 0 14px;
-      color: #ffffff;
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      color: #c8cdd3;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid #363d46;
-      border-radius: 14px;
-      padding: 12px;
-      font-size: 15px;
-      margin-bottom: 12px;
-      font-family: inherit;
-      background: #12161a;
-      color: #f3f4f6;
-      min-height: 88px;
-      resize: vertical;
-    }
-
-    .stats {
-      font-size: 14px;
-      color: #a7afb8;
-      margin-bottom: 8px;
-    }
-
-    .list {
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .item {
-      border: 1px solid #313841;
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-      align-items: flex-start;
-      background: #14181c;
-    }
-
-    .item-left {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .item-text {
-      font-size: 14px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: keep-all;
-      color: #e9edf1;
-    }
-
-    .item-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .action-btn {
-      background: #262c33;
-      color: #d7dde4;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      min-width: 56px;
-      border: 1px solid #3a424c;
-    }
-
-    .edit-box {
-      margin-top: 10px;
-      display: none;
-    }
-
-    .edit-box.active {
-      display: block;
-    }
-
-    .edit-textarea {
-      min-height: 84px;
-      margin-bottom: 8px;
-    }
-
-    .edit-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .save-btn {
-      background: #f3f4f6;
-      color: #111315;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .cancel-btn {
-      background: #262c33;
-      color: #d7dde4;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      border: 1px solid #3a424c;
-    }
-
-    .notice {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #939ba5;
-      line-height: 1.5;
-    }
-
-    .loading {
-      text-align: center;
-      color: #9aa2ac;
-      font-size: 14px;
-      margin-top: 8px;
-    }
-  </style>
+  <title>우리 질문함 🖤</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <h1>우리 질문 뽑기 🖤</h1>
+  <div class="app">
+    <header class="topbar">
+      <h1>우리 질문함 🖤</h1>
+      <button id="changeRoleBtn" class="ghost-btn small">역할 변경</button>
+    </header>
 
-    <div class="card" id="questionBox"></div>
+    <section class="role-strip">
+      <div>
+        <span class="label">현재 사용자</span>
+        <strong id="currentRole">선택 안 됨</strong>
+      </div>
+    </section>
 
-    <div class="buttons">
-      <button class="primary" onclick="drawQuestion()">질문 뽑기</button>
-      <button class="ghost" onclick="toggleAddSection()">질문 추가하기</button>
-      <button class="ghost" onclick="toggleManageSection()">질문 목록 보기</button>
+    <nav class="menu-grid">
+      <button class="menu-btn active" data-view="add">질문 추가</button>
+      <button class="menu-btn" data-view="minju-pending">민주 답변 전</button>
+      <button class="menu-btn" data-view="seokmin-pending">석민 답변 전</button>
+      <button class="menu-btn" data-view="done">답변 완료</button>
+    </nav>
+
+    <!-- 질문 추가 -->
+    <section id="view-add" class="view active">
+      <div class="card">
+        <h2>익명 질문 추가</h2>
+        <textarea
+          id="questionInput"
+          placeholder="궁금한 질문을 익명으로 남겨줘"
+          rows="5"
+        ></textarea>
+        <button id="addQuestionBtn" class="primary-btn full">질문 등록</button>
+      </div>
+    </section>
+
+    <!-- 민주 답변 전 -->
+    <section id="view-minju-pending" class="view">
+      <div class="card">
+        <h2>민주 답변 전</h2>
+        <div id="minjuPendingList" class="list-box"></div>
+      </div>
+    </section>
+
+    <!-- 석민 답변 전 -->
+    <section id="view-seokmin-pending" class="view">
+      <div class="card">
+        <h2>석민 답변 전</h2>
+        <div id="seokminPendingList" class="list-box"></div>
+      </div>
+    </section>
+
+    <!-- 답변 완료 -->
+    <section id="view-done" class="view">
+      <div class="card">
+        <h2>답변 완료</h2>
+        <div id="doneList" class="list-box"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 역할 선택 모달 -->
+  <div id="roleModal" class="modal-overlay show">
+    <div class="modal-card">
+      <h2>누가 들어왔어?</h2>
+      <p class="sub-text">역할을 선택하고 PIN을 입력해줘</p>
+
+      <div class="role-buttons">
+        <button class="role-btn" data-role="민주">민주</button>
+        <button class="role-btn" data-role="석민">석민</button>
+      </div>
+
+      <input
+        type="password"
+        id="pinInput"
+        class="pin-input"
+        placeholder="PIN 입력"
+      />
+
+      <button id="confirmRoleBtn" class="primary-btn full">확인</button>
+      <p id="roleError" class="error-text"></p>
     </div>
+  </div>
 
-    <div class="section" id="addSection" style="display:none;">
-      <h2>질문 추가하기</h2>
+  <!-- 답변/상세 모달 -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-card detail-card">
+      <button id="closeDetailBtn" class="close-btn">×</button>
 
-      <label for="questionInput">질문 내용</label>
-      <textarea id="questionInput" placeholder="예) 다음에 같이 가고 싶은 여행지는?"></textarea>
+      <h2>질문</h2>
+      <p id="detailQuestion" class="question-text"></p>
 
-      <button class="primary" onclick="addQuestion()">추가하기</button>
-    </div>
+      <div class="answer-block">
+        <h3>민주 답변</h3>
+        <div id="minjuAnswerView" class="answer-view hidden-box">아직 답변 전</div>
+      </div>
 
-    <div class="section" id="manageSection" style="display:none;">
-      <h2>질문 목록</h2>
+      <div class="answer-block">
+        <h3>석민 답변</h3>
+        <div id="seokminAnswerView" class="answer-view hidden-box">아직 답변 전</div>
+      </div>
 
-      <div class="stats" id="statsText">불러오는 중...</div>
-      <div class="list" id="questionList"></div>
-
-      <div class="notice">
-        
+      <div id="answerEditor" class="answer-editor hidden">
+        <h3 id="editorTitle">답변 작성</h3>
+        <textarea
+          id="answerInput"
+          rows="5"
+          placeholder="답변을 입력해줘"
+        ></textarea>
+        <button id="saveAnswerBtn" class="primary-btn full">답변 저장</button>
       </div>
     </div>
-
-    <div class="loading" id="loadingText">로그인 준비 중...</div>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
     import {
       getFirestore,
       collection,
       addDoc,
-      deleteDoc,
-      updateDoc,
-      doc,
-      onSnapshot,
+      serverTimestamp,
       query,
       orderBy,
-      serverTimestamp
+      onSnapshot,
+      doc,
+      updateDoc
     } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyD8jZ9kTlGd2OzFswmAzLt8zpec9kMHHV4",
-      authDomain: "couple-question-app.firebaseapp.com",
-      projectId: "couple-question-app",
-      storageBucket: "couple-question-app.firebasestorage.app",
-      messagingSenderId: "455058967733",
-      appId: "1:455058967733:web:c3d138b1a695c1c4af02fc"
+      apiKey: "YOUR_FIREBASE_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
     };
-
-    const DEFAULT_QUESTIONS = [
-      { text: "내가 했을 때 제일 좋았던 말이나 행동은?" },
-      { text: "처음보다 더 좋아진 점 하나 말해보기" },
-      { text: "요즘 나한테 바라는 점 하나는?" },
-      { text: "집데이트랑 밖데이트 중 뭐가 더 좋아?" },
-      { text: "다음에 같이 가고 싶은 여행지는?" },
-      { text: "전화 오래 하기 vs 카톡 자주 하기" },
-      { text: "내 별명 하나 새로 지어준다면?" },
-      { text: "나를 동물에 비유하면 뭐야?" },
-      { text: "같이 먹고 싶은 야식 하나만 고르면?" }
-    ];
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const questionsRef = collection(db, "questions");
 
-    let allQuestions = [];
-
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text || "";
-      return div.innerHTML;
-    }
-
-    function updateLoadingText(message = "") {
-      const el = document.getElementById("loadingText");
-      el.textContent = message;
-      el.style.display = message ? "block" : "none";
-    }
-
-    async function addDefaultQuestionsIfEmpty(snapshot) {
-      if (!snapshot.empty) return;
-
-      for (const item of DEFAULT_QUESTIONS) {
-        await addDoc(questionsRef, {
-          text: item.text,
-          createdAt: serverTimestamp()
-        });
-      }
-    }
-
-    window.drawQuestion = function() {
-      if (!allQuestions.length) {
-        document.getElementById("questionBox").textContent = "";
-        return;
-      }
-
-      const randomIndex = Math.floor(Math.random() * allQuestions.length);
-      document.getElementById("questionBox").textContent = allQuestions[randomIndex].text;
+    window.firebaseRefs = {
+      auth,
+      db,
+      signInAnonymously,
+      collection,
+      addDoc,
+      serverTimestamp,
+      query,
+      orderBy,
+      onSnapshot,
+      doc,
+      updateDoc
     };
-
-    window.toggleAddSection = function() {
-      const addSection = document.getElementById("addSection");
-      const manageSection = document.getElementById("manageSection");
-
-      addSection.style.display = addSection.style.display === "none" ? "block" : "none";
-      manageSection.style.display = "none";
-    };
-
-    window.toggleManageSection = function() {
-      const addSection = document.getElementById("addSection");
-      const manageSection = document.getElementById("manageSection");
-
-      if (manageSection.style.display === "none") {
-        manageSection.style.display = "block";
-        renderQuestions();
-      } else {
-        manageSection.style.display = "none";
-      }
-
-      addSection.style.display = "none";
-    };
-
-    window.addQuestion = async function() {
-      const input = document.getElementById("questionInput");
-      const text = input.value.trim();
-
-      if (!text) {
-        alert("질문 내용을 입력해줘!");
-        return;
-      }
-
-      try {
-        await addDoc(questionsRef, {
-          text,
-          createdAt: serverTimestamp()
-        });
-
-        input.value = "";
-        alert("질문이 추가됐어 🖤");
-      } catch (error) {
-        console.error(error);
-        alert("질문 추가 중 오류가 났어.");
-      }
-    };
-
-    window.renderQuestions = function() {
-      const listEl = document.getElementById("questionList");
-      const statsEl = document.getElementById("statsText");
-
-      statsEl.textContent = `전체 질문 ${allQuestions.length}개`;
-      listEl.innerHTML = "";
-
-      if (!allQuestions.length) {
-        listEl.innerHTML = '<div class="item"><div class="item-text"></div></div>';
-        return;
-      }
-
-      allQuestions.forEach((item) => {
-        const row = document.createElement("div");
-        row.className = "item";
-
-        const left = document.createElement("div");
-        left.className = "item-left";
-
-        const text = document.createElement("div");
-        text.className = "item-text";
-        text.innerHTML = escapeHtml(item.text);
-
-        const editBox = document.createElement("div");
-        editBox.className = "edit-box";
-        editBox.id = `edit-box-${item.id}`;
-
-        const editTextarea = document.createElement("textarea");
-        editTextarea.className = "edit-textarea";
-        editTextarea.id = `edit-textarea-${item.id}`;
-        editTextarea.value = item.text;
-
-        const editActions = document.createElement("div");
-        editActions.className = "edit-actions";
-
-        const saveBtn = document.createElement("button");
-        saveBtn.className = "save-btn";
-        saveBtn.textContent = "저장";
-        saveBtn.onclick = () => saveEdit(item.id);
-
-        const cancelBtn = document.createElement("button");
-        cancelBtn.className = "cancel-btn";
-        cancelBtn.textContent = "취소";
-        cancelBtn.onclick = () => cancelEdit(item.id);
-
-        editActions.appendChild(saveBtn);
-        editActions.appendChild(cancelBtn);
-
-        editBox.appendChild(editTextarea);
-        editBox.appendChild(editActions);
-
-        left.appendChild(text);
-        left.appendChild(editBox);
-
-        const actions = document.createElement("div");
-        actions.className = "item-actions";
-
-        const editBtn = document.createElement("button");
-        editBtn.className = "action-btn";
-        editBtn.textContent = "수정";
-        editBtn.onclick = () => openEdit(item.id);
-
-        const delBtn = document.createElement("button");
-        delBtn.className = "action-btn";
-        delBtn.textContent = "삭제";
-        delBtn.onclick = () => deleteQuestion(item.id);
-
-        actions.appendChild(editBtn);
-        actions.appendChild(delBtn);
-
-        row.appendChild(left);
-        row.appendChild(actions);
-        listEl.appendChild(row);
-      });
-    };
-
-    window.openEdit = function(id) {
-      const box = document.getElementById(`edit-box-${id}`);
-      if (box) box.classList.add("active");
-    };
-
-    window.cancelEdit = function(id) {
-      const box = document.getElementById(`edit-box-${id}`);
-      const textarea = document.getElementById(`edit-textarea-${id}`);
-      const original = allQuestions.find(q => q.id === id);
-
-      if (textarea && original) {
-        textarea.value = original.text;
-      }
-
-      if (box) {
-        box.classList.remove("active");
-      }
-    };
-
-    window.saveEdit = async function(id) {
-      const textarea = document.getElementById(`edit-textarea-${id}`);
-      if (!textarea) return;
-
-      const newText = textarea.value.trim();
-
-      if (!newText) {
-        alert("질문 내용을 입력해줘!");
-        return;
-      }
-
-      try {
-        await updateDoc(doc(db, "questions", id), {
-          text: newText,
-          createdAt: allQuestions.find(q => q.id === id)?.createdAt || null
-        });
-
-        const box = document.getElementById(`edit-box-${id}`);
-        if (box) {
-          box.classList.remove("active");
-        }
-
-        alert("질문이 수정됐어 🖤");
-      } catch (error) {
-        console.error(error);
-        alert("수정 중 오류가 났어.");
-      }
-    };
-
-    async function deleteQuestion(id) {
-      const ok = confirm("이 질문 삭제할까?");
-      if (!ok) return;
-
-      try {
-        await deleteDoc(doc(db, "questions", id));
-      } catch (error) {
-        console.error(error);
-        alert("삭제 중 오류가 났어.");
-      }
-    }
-
-    function startRealtimeListener() {
-      updateLoadingText("데이터 불러오는 중...");
-
-      const q = query(questionsRef, orderBy("createdAt", "desc"));
-
-      onSnapshot(
-        q,
-        async (snapshot) => {
-          try {
-            await addDefaultQuestionsIfEmpty(snapshot);
-          } catch (error) {
-            console.error(error);
-          }
-
-          allQuestions = snapshot.docs.map((docItem) => ({
-            id: docItem.id,
-            ...docItem.data()
-          }));
-
-          renderQuestions();
-          updateLoadingText("");
-        },
-        (error) => {
-          console.error(error);
-          updateLoadingText("데이터를 불러오지 못했어. Firebase 설정을 확인해봐.");
-        }
-      );
-    }
-
-    async function startApp() {
-      updateLoadingText("로그인 중...");
-
-      try {
-        await signInAnonymously(auth);
-      } catch (error) {
-        console.error(error);
-        updateLoadingText("로그인에 실패했어. Firebase Authentication 설정을 확인해봐.");
-        return;
-      }
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          startRealtimeListener();
-        }
-      });
-    }
-
-    startApp();
   </script>
+
+  <script type="module" src="script.js"></script>
 </body>
 </html>
