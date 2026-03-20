@@ -33,8 +33,8 @@
         <h2>익명 질문 추가</h2>
         <textarea
           id="questionInput"
-          placeholder="궁금한 질문을 익명으로 남겨줘"
           rows="5"
+          placeholder="궁금한 질문을 익명으로 남겨줘"
         ></textarea>
         <button id="addQuestionBtn" class="primary-btn full">질문 등록</button>
       </div>
@@ -88,7 +88,7 @@
     </div>
   </div>
 
-  <!-- 답변/상세 모달 -->
+  <!-- 질문 상세 / 답변 모달 -->
   <div id="detailModal" class="modal-overlay">
     <div class="modal-card detail-card">
       <button id="closeDetailBtn" class="close-btn">×</button>
@@ -98,12 +98,12 @@
 
       <div class="answer-block">
         <h3>민주 답변</h3>
-        <div id="minjuAnswerView" class="answer-view hidden-box">아직 답변 전</div>
+        <div id="minjuAnswerView" class="answer-view">아직 답변 전</div>
       </div>
 
       <div class="answer-block">
         <h3>석민 답변</h3>
-        <div id="seokminAnswerView" class="answer-view hidden-box">아직 답변 전</div>
+        <div id="seokminAnswerView" class="answer-view">아직 답변 전</div>
       </div>
 
       <div id="answerEditor" class="answer-editor hidden">
@@ -134,12 +134,12 @@
     } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "YOUR_FIREBASE_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "여기에_네_apiKey",
+      authDomain: "여기에_네_authDomain",
+      projectId: "여기에_네_projectId",
+      storageBucket: "여기에_네_storageBucket",
+      messagingSenderId: "여기에_네_messagingSenderId",
+      appId: "여기에_네_appId"
     };
 
     const app = initializeApp(firebaseConfig);
