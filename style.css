@@ -1,1 +1,305 @@
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+  background: #0d0d0f;
+  color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.topbar h1 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.role-strip {
+  background: #17171b;
+  border: 1px solid #2a2a31;
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  color: #9b9ba3;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.menu-btn,
+.primary-btn,
+.ghost-btn,
+.role-btn {
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.menu-btn {
+  background: #18181d;
+  color: #f5f5f7;
+  border-radius: 14px;
+  padding: 14px 12px;
+  font-size: 15px;
+  border: 1px solid #2b2b33;
+}
+
+.menu-btn.active {
+  background: #f5f5f7;
+  color: #0d0d0f;
+  font-weight: 700;
+}
+
+.card {
+  background: #15151a;
+  border: 1px solid #2a2a31;
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+textarea,
+.pin-input {
+  width: 100%;
+  background: #0f0f13;
+  color: #f5f5f7;
+  border: 1px solid #2b2b33;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+textarea::placeholder,
+.pin-input::placeholder {
+  color: #777782;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 110px;
+  margin-bottom: 12px;
+}
+
+.primary-btn {
+  background: #f5f5f7;
+  color: #0d0d0f;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  opacity: 0.92;
+}
+
+.ghost-btn {
+  background: transparent;
+  color: #d8d8de;
+  border: 1px solid #34343d;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.ghost-btn.small {
+  font-size: 13px;
+}
+
+.full {
+  width: 100%;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.list-box {
+  display: grid;
+  gap: 10px;
+}
+
+.question-item {
+  background: #101015;
+  border: 1px solid #2a2a31;
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.question-item:hover {
+  border-color: #4a4a56;
+}
+
+.question-item .meta {
+  font-size: 12px;
+  color: #9b9ba3;
+  margin-top: 8px;
+}
+
+.empty-text {
+  color: #9b9ba3;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  z-index: 999;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 520px;
+  background: #141419;
+  border: 1px solid #2a2a31;
+  border-radius: 22px;
+  padding: 20px;
+  position: relative;
+}
+
+.detail-card {
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.sub-text {
+  color: #9b9ba3;
+  margin-top: -4px;
+  margin-bottom: 16px;
+}
+
+.role-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.role-btn {
+  background: #1a1a20;
+  color: #f5f5f7;
+  border: 1px solid #2d2d36;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 15px;
+}
+
+.role-btn.selected {
+  background: #f5f5f7;
+  color: #0d0d0f;
+  font-weight: 700;
+}
+
+.pin-input {
+  margin-bottom: 12px;
+}
+
+.error-text {
+  color: #ff7b7b;
+  font-size: 13px;
+  text-align: center;
+  min-height: 18px;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #b8b8c0;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.question-text {
+  background: #0f0f13;
+  border: 1px solid #2b2b33;
+  border-radius: 14px;
+  padding: 14px;
+  line-height: 1.6;
+}
+
+.answer-block {
+  margin-top: 16px;
+}
+
+.answer-block h3,
+#editorTitle {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.answer-view,
+.hidden-box {
+  background: #0f0f13;
+  border: 1px solid #2b2b33;
+  border-radius: 14px;
+  padding: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.answer-editor {
+  margin-top: 18px;
+}
+
+@media (max-width: 520px) {
+  .topbar h1 {
+    font-size: 24px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
